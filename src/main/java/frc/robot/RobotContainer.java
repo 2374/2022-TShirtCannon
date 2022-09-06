@@ -6,12 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.DriveCommand;
 import frc.robot.commands.InteractiveDriveCommand;
 import frc.robot.subsystems.CanonSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-// import frc.robot.subsystems.CanonSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 

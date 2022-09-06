@@ -69,7 +69,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
    
    public void drive( double  left, double right) {
-    robotDrive.tankDrive(left, right);
+    robotDrive.tankDrive(left * 0.75, right * 0.75);
    }
 
 

@@ -72,7 +72,7 @@ public class CanonSubsystem extends SubsystemBase {
     }
 
     public void Elevate() {
-        canonMotor.set(TalonSRXControlMode.PercentOutput, -0.5);
+        canonMotor.set(TalonSRXControlMode.PercentOutput, -0.25);
         sole.set(false);
         System.out.println("Elevate");
         moveMotor -= ADJUSTMENT;
@@ -80,7 +80,7 @@ public class CanonSubsystem extends SubsystemBase {
 
     public void Depress() {
         System.out.println("Depress");
-        canonMotor.set(TalonSRXControlMode.PercentOutput, 0.50);
+        canonMotor.set(TalonSRXControlMode.PercentOutput,0.25);
         sole.set(false);
         moveMotor += ADJUSTMENT;
         canonMotor.setNeutralMode(NeutralMode.Brake);
