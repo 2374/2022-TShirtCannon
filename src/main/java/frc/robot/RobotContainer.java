@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.InteractiveDriveCommand;
+import frc.robot.commands.CanonCommands.ShootCommand;
 import frc.robot.subsystems.CanonSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -45,7 +46,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     System.out.println("ROSS init buttons");
-    new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_B).whenPressed(new InstantCommand(() -> m_canonSubsystem.Fire()));
+    new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_B).whenPressed(new ShootCommand(m_canonSubsystem));
     new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_Y).whenHeld(new InstantCommand(() -> m_canonSubsystem.Elevate()));
     new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_A).whenHeld(new InstantCommand(() -> m_canonSubsystem.Depress()));
   }

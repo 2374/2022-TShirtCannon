@@ -89,7 +89,10 @@ public class CanonSubsystem extends SubsystemBase {
     public void Fire() {
         System.out.println("Fire");
         sole.set(true);
-        //sole.set(false);
-         
+    }
+
+    public void Close() {
+        System.out.println("Clsoe");
+        sole.set(false);
     }
 }
