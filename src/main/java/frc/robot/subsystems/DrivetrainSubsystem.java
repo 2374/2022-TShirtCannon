@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 import frc.robot.Constants;
@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class DrivetrainSubsystem extends SubsystemBase {
 
-    // private TalonFX MasterLeftDriveMotor;
-    // private TalonFX MasterRightDriveMotor;
-    private WPI_TalonFX FrontLeftDriveMotor;
-    private WPI_TalonFX FrontRightDriveMotor;
-    private WPI_TalonFX BackLeftDriveMotor;
-    private WPI_TalonFX BackRightDriveMotor;
+    // private TalonSRX MasterLeftDriveMotor;
+    // private TalonSRX MasterRightDriveMotor;
+    private WPI_TalonSRX FrontLeftDriveMotor;
+    private WPI_TalonSRX FrontRightDriveMotor;
+    private WPI_TalonSRX BackLeftDriveMotor;
+    private WPI_TalonSRX BackRightDriveMotor;
     private boolean brakeEnabled = false;
 
     private DifferentialDrive robotDrive;
@@ -28,10 +28,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
    
     
     public DrivetrainSubsystem() {
-        FrontLeftDriveMotor = new WPI_TalonFX(Constants.TALON_DRIVE_FRONT_LEFT);
-        FrontRightDriveMotor = new WPI_TalonFX(Constants.TALON_DRIVE_FRONT_RIGHT);
-        BackLeftDriveMotor = new WPI_TalonFX(Constants.TALON_DRIVE_BACK_LEFT);
-        BackRightDriveMotor = new WPI_TalonFX(Constants.TALON_DRIVE_BACK_RIGHT);
+        FrontLeftDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_FRONT_LEFT);
+        FrontRightDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_FRONT_RIGHT);
+        BackLeftDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_BACK_LEFT);
+        BackRightDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_BACK_RIGHT);
 
         FrontLeftDriveMotor.setInverted(true);
         BackLeftDriveMotor.setInverted(true);
@@ -69,7 +69,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
    
    public void drive( double  left, double right) {
-    robotDrive.tankDrive(left * 0.75, right * 0.75);
+    robotDrive.tankDrive(left, right);
    }
 
 

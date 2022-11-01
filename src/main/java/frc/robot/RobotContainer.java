@@ -6,36 +6,40 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.InteractiveDriveCommand;
+import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.CanonCommands.ShootCommand;
 import frc.robot.subsystems.CanonSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final CanonSubsystem m_canonSubsystem = new CanonSubsystem();
-  private final InteractiveDriveCommand m_idriveCommand = new InteractiveDriveCommand(m_drivetrainSubsystem,m_canonSubsystem);
 
-  // private final DriveCommand m_driveCommand = new DriveCommand(m_drivetrainSubsystem);
-  
-  private XboxController xbox = new XboxController(0);
+  // private final DriveCommand m_driveCommand = new
+  // DriveCommand(m_drivetrainSubsystem);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  private static XboxController m_controller = new XboxController(0);
+
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
+    m_drivetrainSubsystem.setDefaultCommand(
+        new DefaultDriveCommand(() -> m_controller.getLeftY(), () -> m_controller.getRightY(), m_drivetrainSubsystem));
     // Configure the button bindings
     configureButtonBindings();
-
-    m_drivetrainSubsystem.setDefaultCommand(m_idriveCommand);
   }
 
   /**
@@ -46,18 +50,21 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     System.out.println("ROSS init buttons");
-    new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_B).whenPressed(new ShootCommand(m_canonSubsystem));
-    new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_Y).whenHeld(new InstantCommand(() -> m_canonSubsystem.Elevate()));
-    new JoystickButton(xbox, Constants.XBOX_CONTROLLER_BUTTON_A).whenHeld(new InstantCommand(() -> m_canonSubsystem.Depress()));
+    new JoystickButton(m_controller, Constants.XBOX_CONTROLLER_BUTTON_B)
+        .whenPressed(new ShootCommand(m_canonSubsystem));
+    new JoystickButton(m_controller, Constants.XBOX_CONTROLLER_BUTTON_Y)
+        .whenHeld(new InstantCommand(() -> m_canonSubsystem.Elevate()));
+    new JoystickButton(m_controller, Constants.XBOX_CONTROLLER_BUTTON_A)
+        .whenHeld(new InstantCommand(() -> m_canonSubsystem.Depress()));
   }
 
   // /**
-  //  * Use this to pass the autonomous command to the main {@link Robot} class.
-  //  *
-  //  * @return the command to run in autonomous
-  //  */
+  // * Use this to pass the autonomous command to the main {@link Robot} class.
+  // *
+  // * @return the command to run in autonomous
+  // */
   // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return m_driveCommand;
+  // // An ExampleCommand will run in autonomous
+  // return m_driveCommand;
   // }
 }

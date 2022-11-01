@@ -63,10 +63,11 @@ public final class Constants {
 	// CAN
 	// public static final int TALON_DRIVE_MASTER_LEFT = 1;
 	// public static final int TALON_DRIVE_MASTER_RIGHT = 2;
-	public static final int TALON_DRIVE_FRONT_LEFT = 3;//3;
-	public static final int TALON_DRIVE_FRONT_RIGHT = 4;
 	public static final int TALON_DRIVE_BACK_LEFT = 1;
     public static final int TALON_DRIVE_BACK_RIGHT = 2;
+	public static final int TALON_DRIVE_FRONT_LEFT = 3;
+	public static final int TALON_DRIVE_FRONT_RIGHT = 4;
+	
 
     public static final int ELEVATOR = 7;
 
